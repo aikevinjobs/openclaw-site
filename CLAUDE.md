@@ -54,6 +54,13 @@ npm run build    # 构建生产版本 (输出到 dist/)
 npm run preview  # 预览构建结果
 ```
 
+## 部署
+
+- **托管**: Cloudflare Pages（GitHub 自动构建）
+- **部署脚本**: `./deploy.sh "commit message"` — 自动 stage、commit、push，触发 Cloudflare 构建
+- **环境变量**: Cloudflare 上需设置 `NODE_VERSION=22`
+- **注意**: 如果重新生成 `package-lock.json`，必须删除 `node_modules` 后重新 `npm install`，否则会缺少 Linux 平台依赖导致构建失败。`.npmrc` 中的 `omit=` 确保可选依赖不被跳过
+
 ## 配置
 
 - `astro.config.mjs` — Astro 主配置，包含 Starlight sidebar 定义、i18n 设置、SEO head 标签
