@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="支付成功 - OpenClaw" description="OpenClaw 充值支付成功" lang="zh-CN">
+  <Navbar lang="zh" />
+
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-md mx-auto text-center">
+      <!-- Loading state -->
+      <div id="state-loading">
+        <div class="text-5xl mb-6 animate-pulse">⏳</div>
+        <h1 class="text-2xl font-bold mb-2">正在确认支付结果...</h1>
+        <p class="text-gray-400 text-sm">请稍候，正在与支付平台确认</p>
+      </div>
+
+      <!-- Success state -->
+      <div id="state-success" class="hidden">
+        <div class="text-5xl mb-6">✅</div>
+        <h1 class="text-2xl font-bold mb-2">支付成功</h1>
+        <p class="text-gray-400 text-sm mb-6">充值已到账，现在可以开始使用 OpenClaw 了</p>
+
+        <!-- Next step guide -->
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-left mb-8">
+          <p class="text-sm text-gray-300 mb-3">回到终端，运行以下命令启动 OpenClaw：</p>
+          <div class="install-cmd text-sm" onclick="navigator.clipboard.writeText('openclaw gateway run')">openclaw gateway run</div>
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <a href="/recharge/" class="px-6 py-2 border border-white/20 rounded-lg text-sm text-gray-300 hover:text-white transition-colors">
+            继续充值
+          </a>
+          <a href="/download/" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm text-white transition-colors">
+            查看完整教程
+          </a>
+        </div>
+      </div>
+
+      <!-- Failed state -->
+      <div id="state-failed" class="hidden">
+        <div class="text-5xl mb-6">❌</div>
+        <h1 class="text-2xl font-bold mb-2">支付确认失败</h1>
+        <p class="text-gray-400 text-sm mb-6">未能确认支付结果，如已扣款请稍后查看余额</p>
+        <div class="flex gap-4 justify-center">
+          <a href="/recharge/" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm text-white transition-colors">
+            返回充值页
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="zh" />
+
+  <script>
+    const API_BASE = "https://www.wensiwanxiang.com/api";
+
+    const params = new URLSearchParams(window.location.search);
+    const outTradeNo = params.get("out_trade_no") || params.get("outTradeNo") || "";
+
+    const stateLoading = document.getElementById("state-loading")!;
+    const stateSuccess = document.getElementById("state-success")!;
+    const stateFailed = document.getElementById("state-failed")!;
+
+    function showSuccess() {
+      stateLoading.classList.add("hidden");
+      stateSuccess.classList.remove("hidden");
+
+      sessionStorage.setItem("fromPaymentSuccess", "true");
+    }
+
+    function showFailed() {
+      stateLoading.classList.add("hidden");
+      stateFailed.classList.remove("hidden");
+    }
+
+    async function checkPayment() {
+      if (!outTradeNo) {
+        showFailed();
+        return;
+      }
+
+      let attempts = 0;
+      const maxAttempts = 20;
+
+      const poll = async () => {
+        attempts++;
+        try {
+          const res = await fetch(`${API_BASE}/check-payment-status?outTradeNo=${encodeURIComponent(outTradeNo)}`);
+          const data = await res.json();
+          if (data.success) {
+            showSuccess();
+            return;
+          }
+        } catch {
+          // continue polling
+        }
+
+        if (attempts < maxAttempts) {
+          setTimeout(poll, 3000);
+        } else {
+          showFailed();
+        }
+      };
+
+      poll();
+    }
+
+    checkPayment();
+  </script>
+</BaseLayout>

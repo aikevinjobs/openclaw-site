@@ -9,7 +9,7 @@ OpenClaw 官方网站，基于 Astro 框架构建，包含营销落地页和 Sta
 - **样式**: Tailwind CSS 4 (通过 @tailwindcss/vite 插件)
 - **SEO**: @astrojs/sitemap, 结构化数据 (JSON-LD), Open Graph, hreflang
 - **图片处理**: sharp
-- **站点域名**: https://openclaw.cc
+- **站点域名**: https://openclaw.cooking
 
 ## 项目结构
 

@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://openclaw.cc",
+  site: "https://openclaw.cooking",
   vite: {
     plugins: [tailwindcss()],
   },
