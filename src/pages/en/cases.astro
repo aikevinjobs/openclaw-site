@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+const cases = [
+  {
+    title: "Smart Home Butler",
+    desc: "Control your entire smart home from a chat app. Say 'dim the living room lights' and AI handles it.",
+    tags: ["WhatsApp", "Home Assistant", "Smart Home"],
+    icon: "🏠",
+    difficulty: "Easy",
+  },
+  {
+    title: "Telegram Personal Assistant",
+    desc: "Ask questions, translate documents, summarize articles anytime on Telegram. Send images for AI recognition.",
+    tags: ["Telegram", "Claude", "Daily Use"],
+    icon: "✈️",
+    difficulty: "Easy",
+  },
+  {
+    title: "Customer Support Bot",
+    desc: "24/7 automatic customer support. Retrieves answers from knowledge base, escalates complex issues to humans.",
+    tags: ["Slack", "Support", "Knowledge Base"],
+    icon: "🏢",
+    difficulty: "Medium",
+  },
+  {
+    title: "Daily Standup Reporter",
+    desc: "Automatically collects team progress, generates daily/weekly reports, and posts them to your team channel.",
+    tags: ["Slack", "Productivity", "Automation"],
+    icon: "📊",
+    difficulty: "Medium",
+  },
+  {
+    title: "Discord Community Manager",
+    desc: "Auto-answer FAQs, welcome new members, moderate content, generate community activity reports.",
+    tags: ["Discord", "Community", "Automation"],
+    icon: "🎮",
+    difficulty: "Medium",
+  },
+  {
+    title: "Family Group Assistant",
+    desc: "Share recipes, manage shopping lists, set reminders in your family group chat. AI for the whole family.",
+    tags: ["WhatsApp", "Family", "Daily Use"],
+    icon: "👨‍👩‍👧‍👦",
+    difficulty: "Easy",
+  },
+  {
+    title: "Multi-Platform Hub",
+    desc: "One AI connected to WhatsApp, Telegram, Discord simultaneously. Unified responses, no messages missed.",
+    tags: ["Multi-Platform", "Productivity", "Advanced"],
+    icon: "🔄",
+    difficulty: "Advanced",
+  },
+  {
+    title: "GitHub Code Review Assistant",
+    desc: "Automatically reviews PRs, suggests improvements, notifies developers via Slack or Teams.",
+    tags: ["GitHub", "Development", "Automation"],
+    icon: "🐙",
+    difficulty: "Advanced",
+  },
+];
+
+const difficultyColors: Record<string, string> = {
+  "Easy": "bg-green-500/20 text-green-400",
+  "Medium": "bg-yellow-500/20 text-yellow-400",
+  "Advanced": "bg-red-500/20 text-red-400",
+};
+---
+
+<BaseLayout title="Use Cases - OpenClaw" description="Real-world OpenClaw examples: smart home, customer support, community management, team collaboration." lang="en">
+  <Navbar lang="en" />
+
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-4">Use Cases</h1>
+      <p class="text-gray-400 text-center mb-4 max-w-2xl mx-auto">
+        See what people are building with OpenClaw — from daily chat to enterprise automation
+      </p>
+      <p class="text-indigo-400 text-center mb-16 text-sm">
+        Every example can be up and running in 10 minutes
+      </p>
+
+      <div class="card-grid">
+        {cases.map((c) => (
+          <div class="feature-card flex flex-col">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">{c.icon}</span>
+              <span class={`text-xs px-2 py-0.5 rounded-full ${difficultyColors[c.difficulty]}`}>
+                {c.difficulty}
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">{c.title}</h3>
+            <p class="text-sm text-gray-400 mb-4 flex-1">{c.desc}</p>
+            <div class="flex flex-wrap gap-1.5">
+              {c.tags.map((tag) => (
+                <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-gray-300">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-20">
+        <h2 class="text-2xl font-bold text-center mb-8">Video Tutorials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="aspect-video bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+            <div class="text-center text-gray-500">
+              <p class="text-4xl mb-2">🎬</p>
+              <p class="text-sm">Get Started in 5 Minutes</p>
+              <p class="text-xs mt-1">Coming soon</p>
+            </div>
+          </div>
+          <div class="aspect-video bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+            <div class="text-center text-gray-500">
+              <p class="text-4xl mb-2">🎬</p>
+              <p class="text-sm">Telegram Bot Setup</p>
+              <p class="text-xs mt-1">Coming soon</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center">
+        <p class="text-gray-300 mb-4">Ready to build your own?</p>
+        <a href="/en/download/" class="inline-block px-8 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-semibold transition-colors">
+          Install Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="en" />
+</BaseLayout>

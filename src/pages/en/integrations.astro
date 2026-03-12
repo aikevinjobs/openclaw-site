@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+const categories = [
+  {
+    name: "Chat Platforms",
+    items: [
+      { name: "WhatsApp", desc: "2 billion users worldwide. Personal and business messaging.", icon: "📱" },
+      { name: "Telegram", desc: "Popular open messaging platform with groups and channels.", icon: "✈️" },
+      { name: "Discord", desc: "Community and gaming chat with server management.", icon: "🎮" },
+      { name: "Slack", desc: "Team collaboration with channels and workflow integrations.", icon: "💼" },
+      { name: "Signal", desc: "End-to-end encrypted private messaging.", icon: "🔐" },
+      { name: "iMessage", desc: "Native Apple ecosystem messaging on macOS/iOS.", icon: "🍎" },
+      { name: "Microsoft Teams", desc: "Enterprise collaboration with meetings and channels.", icon: "👥" },
+      { name: "Matrix", desc: "Open-source decentralized communication protocol.", icon: "🔗" },
+      { name: "WeChat", desc: "China's most popular messaging platform.", icon: "💚" },
+      { name: "WeCom", desc: "Enterprise WeChat for business communication.", icon: "🏢" },
+      { name: "Feishu / Lark", desc: "ByteDance's collaboration suite.", icon: "🐦" },
+      { name: "DingTalk", desc: "Alibaba's enterprise communication platform.", icon: "📌" },
+    ],
+  },
+  {
+    name: "AI Models",
+    items: [
+      { name: "Claude (Anthropic)", desc: "Opus, Sonnet, Haiku — strong reasoning capabilities.", icon: "🟣" },
+      { name: "GPT-4 / GPT-5 (OpenAI)", desc: "Industry-leading large language models.", icon: "🟢" },
+      { name: "Gemini (Google)", desc: "Google's multimodal AI model.", icon: "🔵" },
+      { name: "DeepSeek", desc: "High-performance Chinese AI model.", icon: "🌊" },
+      { name: "Grok (xAI)", desc: "Real-time internet access, witty style.", icon: "⚡" },
+      { name: "Ollama (Local)", desc: "Run open-source models locally, fully offline.", icon: "🦙" },
+      { name: "OpenRouter", desc: "One API for all models, automatic routing.", icon: "🔀" },
+    ],
+  },
+  {
+    name: "Smart Home",
+    items: [
+      { name: "Home Assistant", desc: "Open-source smart home — control everything with natural language.", icon: "🏠" },
+      { name: "Philips Hue", desc: "Smart lighting control with scenes and schedules.", icon: "💡" },
+    ],
+  },
+  {
+    name: "Developer Tools",
+    items: [
+      { name: "GitHub", desc: "Repository management, issue tracking, PR reviews.", icon: "🐙" },
+      { name: "VS Code", desc: "Chat with AI directly in your editor.", icon: "📝" },
+      { name: "Docker", desc: "Containerized deployment, one-click start.", icon: "🐳" },
+    ],
+  },
+  {
+    name: "Platforms",
+    items: [
+      { name: "macOS", desc: "Menu bar app + CLI, native experience.", icon: "🍏" },
+      { name: "iOS", desc: "Native iPhone/iPad app.", icon: "📲" },
+      { name: "Android", desc: "Native Android app.", icon: "🤖" },
+      { name: "Linux", desc: "CLI + Docker, ideal for server deployment.", icon: "🐧" },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Integrations - OpenClaw" description="All platforms, AI models, and services supported by OpenClaw." lang="en">
+  <Navbar lang="en" />
+
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-4">Integrations</h1>
+      <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+        OpenClaw connects to all the platforms and services you use
+      </p>
+
+      {categories.map((cat) => (
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            {cat.name}
+            <span class="text-sm font-normal text-gray-500">({cat.items.length})</span>
+          </h2>
+          <div class="card-grid">
+            {cat.items.map((item) => (
+              <div class="feature-card">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-2xl">{item.icon}</span>
+                  <h3 class="text-base font-semibold">{item.name}</h3>
+                </div>
+                <p class="text-sm text-gray-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Footer lang="en" />
+</BaseLayout>

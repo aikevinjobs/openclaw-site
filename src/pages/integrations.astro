@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const categories = [
+  {
+    name: "聊天平台",
+    items: [
+      { name: "微信", desc: "通过微信公众号/小程序接入，支持文字、语音、图片消息", icon: "💚" },
+      { name: "企业微信", desc: "企业内部机器人，支持群消息、事件回调、组织架构", icon: "🏢" },
+      { name: "飞书", desc: "消息收发、事件订阅、交互卡片，深度集成飞书生态", icon: "🐦" },
+      { name: "钉钉", desc: "钉钉机器人消息推送、事件回调、组织架构能力", icon: "📌" },
+      { name: "Telegram", desc: "全球最流行的开源聊天平台之一，支持群组和频道", icon: "✈️" },
+      { name: "WhatsApp", desc: "全球 20 亿用户，支持个人和商业消息", icon: "📱" },
+      { name: "Discord", desc: "社区和游戏玩家首选，支持服务器、频道管理", icon: "🎮" },
+      { name: "Slack", desc: "团队协作利器，支持频道消息和工作流集成", icon: "💼" },
+      { name: "Signal", desc: "端到端加密通讯，注重隐私安全", icon: "🔐" },
+      { name: "iMessage", desc: "苹果生态原生消息，macOS/iOS 深度集成", icon: "🍎" },
+      { name: "Microsoft Teams", desc: "企业协作平台，支持会议、频道消息", icon: "👥" },
+      { name: "Matrix", desc: "开源去中心化通讯协议", icon: "🔗" },
+    ],
+  },
+  {
+    name: "AI 模型",
+    items: [
+      { name: "Claude (Anthropic)", desc: "Opus、Sonnet、Haiku 系列，推理能力强", icon: "🟣" },
+      { name: "GPT-4 / GPT-5 (OpenAI)", desc: "业界标杆大语言模型", icon: "🟢" },
+      { name: "Gemini (Google)", desc: "Google 多模态 AI 模型", icon: "🔵" },
+      { name: "DeepSeek", desc: "国产高性能大模型，性价比极高", icon: "🌊" },
+      { name: "Grok (xAI)", desc: "实时联网、幽默风格的 AI", icon: "⚡" },
+      { name: "通义千问 (阿里)", desc: "阿里巴巴大语言模型", icon: "☁️" },
+      { name: "Ollama (本地)", desc: "本地运行开源模型，完全离线、隐私优先", icon: "🦙" },
+      { name: "OpenRouter", desc: "一个 API 访问所有模型，自动路由最优选择", icon: "🔀" },
+    ],
+  },
+  {
+    name: "智能家居",
+    items: [
+      { name: "Home Assistant", desc: "开源智能家居平台，用自然语言控制全屋设备", icon: "🏠" },
+      { name: "Philips Hue", desc: "智能灯光控制，调色温、亮度、场景", icon: "💡" },
+    ],
+  },
+  {
+    name: "开发工具",
+    items: [
+      { name: "GitHub", desc: "代码仓库管理、Issue 追踪、PR 审查", icon: "🐙" },
+      { name: "VS Code", desc: "编辑器内直接与 AI 对话", icon: "📝" },
+      { name: "Docker", desc: "容器化部署，一键启动", icon: "🐳" },
+    ],
+  },
+  {
+    name: "效率工具",
+    items: [
+      { name: "Notion", desc: "笔记与知识库管理，AI 辅助整理", icon: "📓" },
+      { name: "Obsidian", desc: "本地 Markdown 笔记，AI 增强搜索", icon: "💎" },
+      { name: "Trello", desc: "看板式项目管理，AI 自动分配任务", icon: "📋" },
+    ],
+  },
+  {
+    name: "操作系统",
+    items: [
+      { name: "macOS", desc: "菜单栏应用 + CLI，原生体验", icon: "🍏" },
+      { name: "iOS", desc: "iPhone/iPad 原生应用", icon: "📲" },
+      { name: "Android", desc: "安卓原生应用", icon: "🤖" },
+      { name: "Linux", desc: "CLI + Docker，服务器部署首选", icon: "🐧" },
+    ],
+  },
+];
+---
+
+<BaseLayout title="功能集成 - OpenClaw" description="OpenClaw 支持的所有平台、AI 模型和服务集成。微信、飞书、钉钉、Telegram 等全覆盖。" lang="zh-CN">
+  <Navbar lang="zh" />
+
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-4">功能集成</h1>
+      <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+        OpenClaw 连接你使用的所有平台和服务，一个智能体搞定一切
+      </p>
+
+      {categories.map((cat) => (
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            {cat.name}
+            <span class="text-sm font-normal text-gray-500">({cat.items.length})</span>
+          </h2>
+          <div class="card-grid">
+            {cat.items.map((item) => (
+              <div class="feature-card">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-2xl">{item.icon}</span>
+                  <h3 class="text-base font-semibold">{item.name}</h3>
+                </div>
+                <p class="text-sm text-gray-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Footer lang="zh" />
+</BaseLayout>

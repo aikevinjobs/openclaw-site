@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Override Starlight theme tokens */
+:root {
+  --sl-color-accent-low: #1a1a2e;
+  --sl-color-accent: #4f46e5;
+  --sl-color-accent-high: #818cf8;
+  --sl-font-system: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+:root[data-theme="light"] {
+  --sl-color-accent-low: #e0e7ff;
+  --sl-color-accent: #4f46e5;
+  --sl-color-accent-high: #312e81;
+}
+
+/* Custom page styles (non-docs pages) */
+.landing-page {
+  font-family: var(--sl-font-system);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+.hero-gradient-light {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #ddd6fe 100%);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.15);
+}
+
+/* Copy button for install commands */
+.install-cmd {
+  position: relative;
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 1rem 3rem 1rem 1.25rem;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.95rem;
+  color: #a6e3a1;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  user-select: all;
+}
+
+.install-cmd::after {
+  content: "📋";
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.6;
+}
+
+.install-cmd:hover::after {
+  opacity: 1;
+}

@@ -1,0 +1,58 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  ogImage?: string;
+}
+
+const { title, description, lang = "zh-CN", ogImage } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : undefined;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="zh-CN" href={new URL(Astro.url.pathname.replace(/^\/en\//, "/"), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.startsWith("/en/") ? Astro.url.pathname : `/en${Astro.url.pathname}`, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/en\//, "/"), Astro.site)} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="OpenClaw" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "zh_CN"} />
+    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "OpenClaw",
+      "operatingSystem": "macOS, Linux, Windows, iOS, Android",
+      "applicationCategory": "DeveloperApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": description,
+    })} />
+
+  </head>
+  <body class="landing-page min-h-screen bg-gray-950 text-white">
+    <slot />
+  </body>
+</html>

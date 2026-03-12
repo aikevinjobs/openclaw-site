@@ -1,0 +1,43 @@
+---
+interface Props {
+  lang?: string;
+}
+const { lang = "zh" } = Astro.props;
+const isEn = lang === "en";
+---
+
+<footer class="border-t border-white/10 bg-gray-950 py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-3">
+          <span class="text-indigo-400">Open</span>Claw
+        </h3>
+        <p class="text-sm text-gray-400">
+          {isEn
+            ? "AI agent for everyone. One-click install, ready to use."
+            : "让普通人也能用上 AI 智能体。一键安装，开箱即用。"}
+        </p>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold mb-3 text-gray-300">{isEn ? "Links" : "链接"}</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="https://github.com/openclaw/openclaw" target="_blank" class="hover:text-white transition-colors">GitHub</a></li>
+          <li><a href="https://docs.openclaw.ai" target="_blank" class="hover:text-white transition-colors">{isEn ? "Official Docs" : "官方文档"}</a></li>
+          <li><a href={isEn ? "/en/download/" : "/download/"} class="hover:text-white transition-colors">{isEn ? "Download" : "下载安装"}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold mb-3 text-gray-300">{isEn ? "Community" : "社区"}</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="https://discord.gg/openclaw" target="_blank" class="hover:text-white transition-colors">Discord</a></li>
+          <li>{isEn ? "WeChat group coming soon" : "微信群即将开放"}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/5 text-center text-xs text-gray-500">
+      &copy; {new Date().getFullYear()} OpenClaw Community.
+      {isEn ? "Not an official OpenClaw site." : "非官方社区站点。"}
+    </div>
+  </div>
+</footer>

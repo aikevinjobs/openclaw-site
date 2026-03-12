@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<BaseLayout title="OpenClaw - AI Agent for Everyone" description="One-click install AI agent. Connect to WhatsApp, Telegram, Discord and more. No coding required." lang="en">
+  <Navbar lang="en" />
+
+  <!-- Hero -->
+  <section class="hero-gradient pt-32 pb-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+        AI That Actually <span class="text-indigo-400">Works for You</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        One-click install. Connect to your favorite chat platforms. No complex setup — anyone can use an AI agent.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+        <a href="/en/download/" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-semibold transition-colors text-lg">
+          Install Now
+        </a>
+        <a href="/en/cases/" class="px-8 py-3 border border-white/20 hover:border-white/40 rounded-lg text-gray-300 hover:text-white font-semibold transition-colors text-lg">
+          See Examples
+        </a>
+      </div>
+
+      <div class="install-cmd max-w-lg mx-auto" onclick="navigator.clipboard.writeText('npm install -g openclaw')">
+        npm install -g openclaw
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20 px-4 bg-gray-900/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Why OpenClaw</h2>
+      <div class="card-grid">
+        <div class="feature-card">
+          <div class="text-3xl mb-3">🚀</div>
+          <h3 class="text-lg font-semibold mb-2">One-Click Install</h3>
+          <p class="text-gray-400 text-sm">Single command setup on macOS, Linux, or Windows. No Docker, no environment hassle.</p>
+        </div>
+        <div class="feature-card">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="text-lg font-semibold mb-2">All Platforms</h3>
+          <p class="text-gray-400 text-sm">WhatsApp, Telegram, Discord, Slack, WeChat, Teams, and more — one agent, every platform.</p>
+        </div>
+        <div class="feature-card">
+          <div class="text-3xl mb-3">🧠</div>
+          <h3 class="text-lg font-semibold mb-2">Multiple AI Models</h3>
+          <p class="text-gray-400 text-sm">Claude, GPT-4, Gemini, DeepSeek, Grok, local models via Ollama — switch anytime.</p>
+        </div>
+        <div class="feature-card">
+          <div class="text-3xl mb-3">🔧</div>
+          <h3 class="text-lg font-semibold mb-2">Gets Things Done</h3>
+          <p class="text-gray-400 text-sm">Not just chat. Send emails, manage calendar, check weather, control smart home — AI that actually works.</p>
+        </div>
+        <div class="feature-card">
+          <div class="text-3xl mb-3">🏠</div>
+          <h3 class="text-lg font-semibold mb-2">Smart Home</h3>
+          <p class="text-gray-400 text-sm">Home Assistant integration. Control lights, AC, curtains with natural language.</p>
+        </div>
+        <div class="feature-card">
+          <div class="text-3xl mb-3">🔒</div>
+          <h3 class="text-lg font-semibold mb-2">Privacy First</h3>
+          <p class="text-gray-400 text-sm">Self-hosted, local data storage. Your conversations never pass through third parties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported Platforms -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-4">Supported Platforms</h2>
+      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Connect to all major chat platforms and AI models</p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {[
+          { name: "WhatsApp", icon: "📱" },
+          { name: "Telegram", icon: "✈️" },
+          { name: "Discord", icon: "🎮" },
+          { name: "Slack", icon: "💼" },
+          { name: "Signal", icon: "🔐" },
+          { name: "iMessage", icon: "🍎" },
+          { name: "Teams", icon: "👥" },
+          { name: "Matrix", icon: "🔗" },
+          { name: "WeChat", icon: "💚" },
+          { name: "WeCom", icon: "🏢" },
+          { name: "Feishu", icon: "🐦" },
+          { name: "DingTalk", icon: "📌" },
+        ].map((item) => (
+          <div class="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="text-2xl">{item.icon}</span>
+            <span class="text-xs text-gray-300">{item.name}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {[
+          { name: "Claude", icon: "🟣" },
+          { name: "GPT-4", icon: "🟢" },
+          { name: "Gemini", icon: "🔵" },
+          { name: "DeepSeek", icon: "🌊" },
+          { name: "Grok", icon: "⚡" },
+          { name: "Ollama", icon: "🦙" },
+        ].map((item) => (
+          <div class="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="text-2xl">{item.icon}</span>
+            <span class="text-xs text-gray-300">{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-4 bg-indigo-600/10">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Start?</h2>
+      <p class="text-gray-300 mb-8">One command to launch your AI agent journey.</p>
+      <a href="/en/download/" class="inline-block px-8 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-semibold transition-colors text-lg">
+        Install Now
+      </a>
+    </div>
+  </section>
+
+  <Footer lang="en" />
+</BaseLayout>

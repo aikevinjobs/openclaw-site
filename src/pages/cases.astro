@@ -1,0 +1,147 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const cases = [
+  {
+    title: "家庭智能管家",
+    desc: "在微信群里直接控制全屋智能设备。说一句「把客厅灯调暗一点」，AI 自动执行。",
+    tags: ["微信", "Home Assistant", "智能家居"],
+    icon: "🏠",
+    difficulty: "简单",
+  },
+  {
+    title: "Telegram 私人助理",
+    desc: "在 Telegram 上随时问问题、翻译文档、总结长文。支持发送图片让 AI 识别内容。",
+    tags: ["Telegram", "Claude", "日常使用"],
+    icon: "✈️",
+    difficulty: "简单",
+  },
+  {
+    title: "企业微信客服机器人",
+    desc: "7x24 自动回复客户问题，从知识库中检索答案，复杂问题自动转接人工。",
+    tags: ["企业微信", "客服", "知识库"],
+    icon: "🏢",
+    difficulty: "中等",
+  },
+  {
+    title: "飞书日报助手",
+    desc: "每天自动收集团队成员的工作进展，生成日报/周报，推送到飞书群。",
+    tags: ["飞书", "效率", "自动化"],
+    icon: "📊",
+    difficulty: "中等",
+  },
+  {
+    title: "Discord 社区管理",
+    desc: "自动回答社区常见问题，欢迎新成员，管理违规内容，生成社区活跃度报告。",
+    tags: ["Discord", "社区", "自动化"],
+    icon: "🎮",
+    difficulty: "中等",
+  },
+  {
+    title: "WhatsApp 家庭群助手",
+    desc: "在家庭群里分享食谱、管理购物清单、提醒重要日期，让全家人都能用上 AI。",
+    tags: ["WhatsApp", "家庭", "日常使用"],
+    icon: "👨‍👩‍👧‍👦",
+    difficulty: "简单",
+  },
+  {
+    title: "多平台统一管理",
+    desc: "一个 AI 同时连接微信、Telegram、Discord，统一回复，消息同步，不遗漏任何平台。",
+    tags: ["多平台", "效率", "进阶"],
+    icon: "🔄",
+    difficulty: "进阶",
+  },
+  {
+    title: "GitHub 代码审查助手",
+    desc: "收到 PR 通知后自动审查代码，提出改进建议，推送到 Slack/飞书通知开发者。",
+    tags: ["GitHub", "开发", "自动化"],
+    icon: "🐙",
+    difficulty: "进阶",
+  },
+  {
+    title: "钉钉会议纪要",
+    desc: "自动整理会议录音，生成结构化的会议纪要和待办事项，分发给参会者。",
+    tags: ["钉钉", "会议", "效率"],
+    icon: "📝",
+    difficulty: "中等",
+  },
+];
+
+const difficultyColors: Record<string, string> = {
+  "简单": "bg-green-500/20 text-green-400",
+  "中等": "bg-yellow-500/20 text-yellow-400",
+  "进阶": "bg-red-500/20 text-red-400",
+};
+---
+
+<BaseLayout title="使用案例 - OpenClaw" description="OpenClaw 真实使用案例：智能家居、客服机器人、社区管理、团队协作等场景。" lang="zh-CN">
+  <Navbar lang="zh" />
+
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-4">使用案例</h1>
+      <p class="text-gray-400 text-center mb-4 max-w-2xl mx-auto">
+        看看别人都在用 OpenClaw 做什么 — 从日常聊天到企业自动化
+      </p>
+      <p class="text-indigo-400 text-center mb-16 text-sm">
+        每个案例都可以在 10 分钟内跑起来
+      </p>
+
+      <div class="card-grid">
+        {cases.map((c) => (
+          <div class="feature-card flex flex-col">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">{c.icon}</span>
+              <span class={`text-xs px-2 py-0.5 rounded-full ${difficultyColors[c.difficulty]}`}>
+                {c.difficulty}
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">{c.title}</h3>
+            <p class="text-sm text-gray-400 mb-4 flex-1">{c.desc}</p>
+            <div class="flex flex-wrap gap-1.5">
+              {c.tags.map((tag) => (
+                <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-gray-300">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Video section placeholder -->
+      <div class="mt-20">
+        <h2 class="text-2xl font-bold text-center mb-8">视频教程</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="aspect-video bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+            <div class="text-center text-gray-500">
+              <p class="text-4xl mb-2">🎬</p>
+              <p class="text-sm">5 分钟快速上手</p>
+              <p class="text-xs mt-1">视频即将上线</p>
+            </div>
+          </div>
+          <div class="aspect-video bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
+            <div class="text-center text-gray-500">
+              <p class="text-4xl mb-2">🎬</p>
+              <p class="text-sm">微信接入全流程</p>
+              <p class="text-xs mt-1">视频即将上线</p>
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-xs text-gray-500 mt-4">
+          视频上线后支持 Bilibili 和 YouTube 播放
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 text-center">
+        <p class="text-gray-300 mb-4">想要实现自己的场景？</p>
+        <a href="/download/" class="inline-block px-8 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-semibold transition-colors">
+          立即安装，开始体验
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="zh" />
+</BaseLayout>

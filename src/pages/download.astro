@@ -1,0 +1,134 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="下载安装 OpenClaw" description="一键安装 OpenClaw AI 智能体，支持 macOS、Linux、Windows 全平台。" lang="zh-CN">
+  <Navbar lang="zh" />
+
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-4">下载安装</h1>
+      <p class="text-gray-400 text-center mb-12">选择你的系统，一键安装</p>
+
+      <!-- Auto detect -->
+      <div class="text-center mb-12 p-6 rounded-xl bg-indigo-600/10 border border-indigo-500/20">
+        <p class="text-sm text-gray-400 mb-2">检测到你的系统：<span id="detected-os" class="text-white font-semibold">检测中...</span></p>
+        <div class="install-cmd max-w-xl mx-auto mt-4" id="auto-cmd" onclick="navigator.clipboard.writeText(this.textContent.trim())">
+          npm install -g openclaw
+        </div>
+      </div>
+
+      <!-- All platforms -->
+      <div class="space-y-8">
+        <!-- macOS -->
+        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl">🍎</span>
+            <h2 class="text-xl font-semibold">macOS</h2>
+          </div>
+          <p class="text-sm text-gray-400 mb-4">推荐使用桌面应用，也可以用命令行安装</p>
+          <div class="space-y-3">
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">桌面应用（推荐）</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('brew install --cask openclaw')">brew install --cask openclaw</div>
+            </div>
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">命令行</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('npm install -g openclaw')">npm install -g openclaw</div>
+            </div>
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">一键脚本</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('curl -fsSL https://openclaw.ai/install.sh | bash')">curl -fsSL https://openclaw.ai/install.sh | bash</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linux -->
+        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl">🐧</span>
+            <h2 class="text-xl font-semibold">Linux</h2>
+          </div>
+          <p class="text-sm text-gray-400 mb-4">支持 Ubuntu、Debian、CentOS 等主流发行版</p>
+          <div class="space-y-3">
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">一键脚本（推荐）</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('curl -fsSL https://openclaw.ai/install.sh | bash')">curl -fsSL https://openclaw.ai/install.sh | bash</div>
+            </div>
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">npm 安装</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('sudo npm install -g openclaw')">sudo npm install -g openclaw</div>
+            </div>
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">Docker</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('docker run -d --name openclaw openclaw/openclaw')">docker run -d --name openclaw openclaw/openclaw</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Windows -->
+        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl">🪟</span>
+            <h2 class="text-xl font-semibold">Windows</h2>
+          </div>
+          <p class="text-sm text-gray-400 mb-4">推荐使用 WSL 或直接 npm 安装</p>
+          <div class="space-y-3">
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">npm 安装</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('npm install -g openclaw')">npm install -g openclaw</div>
+            </div>
+            <div>
+              <span class="text-xs text-gray-500 mb-1 block">PowerShell 一键脚本</span>
+              <div class="install-cmd" onclick="navigator.clipboard.writeText('irm https://openclaw.ai/install.ps1 | iex')">irm https://openclaw.ai/install.ps1 | iex</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Source -->
+        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl">📦</span>
+            <h2 class="text-xl font-semibold">从源码安装</h2>
+          </div>
+          <p class="text-sm text-gray-400 mb-4">适合开发者和想要自定义的用户</p>
+          <div class="install-cmd text-sm leading-relaxed" onclick="navigator.clipboard.writeText('git clone https://github.com/openclaw/openclaw.git\ncd openclaw\npnpm install\npnpm build')">git clone https://github.com/openclaw/openclaw.git<br/>cd openclaw && pnpm install && pnpm build</div>
+        </div>
+      </div>
+
+      <!-- Quick start after install -->
+      <div class="mt-12 p-6 rounded-xl bg-white/5 border border-white/10">
+        <h2 class="text-xl font-semibold mb-4">安装完成后</h2>
+        <div class="space-y-3 text-sm text-gray-300">
+          <p>1. 启动网关：</p>
+          <div class="install-cmd" onclick="navigator.clipboard.writeText('openclaw gateway run')">openclaw gateway run</div>
+          <p class="mt-4">2. 连接你的第一个聊天平台（以 Telegram 为例）：</p>
+          <div class="install-cmd" onclick="navigator.clipboard.writeText('openclaw channels add telegram')">openclaw channels add telegram</div>
+          <p class="mt-4">3. 开始聊天！在 Telegram 中给你的机器人发消息即可。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="zh" />
+
+  <script>
+    const ua = navigator.userAgent;
+    const osEl = document.getElementById("detected-os");
+    const cmdEl = document.getElementById("auto-cmd");
+    if (ua.includes("Mac")) {
+      if (osEl) osEl.textContent = "macOS";
+      if (cmdEl) cmdEl.textContent = "brew install --cask openclaw";
+    } else if (ua.includes("Win")) {
+      if (osEl) osEl.textContent = "Windows";
+      if (cmdEl) cmdEl.textContent = "npm install -g openclaw";
+    } else if (ua.includes("Linux")) {
+      if (osEl) osEl.textContent = "Linux";
+      if (cmdEl) cmdEl.textContent = "curl -fsSL https://openclaw.ai/install.sh | bash";
+    } else {
+      if (osEl) osEl.textContent = "npm (通用)";
+    }
+  </script>
+</BaseLayout>
