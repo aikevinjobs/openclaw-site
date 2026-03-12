@@ -67,7 +67,7 @@ export default defineConfig({
       head: [
         {
           tag: "meta",
-          attrs: { name: "baidu-site-verification", content: "your-baidu-code" },
+          attrs: { name: "baidu-site-verification", content: "codeva-XTvXhHvR1M" },
         },
         {
           tag: "script",

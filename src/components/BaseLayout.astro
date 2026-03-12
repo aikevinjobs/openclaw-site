@@ -21,6 +21,9 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : undefined;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Baidu site verification -->
+    <meta name="baidu-site-verification" content="codeva-XTvXhHvR1M" />
+
     <!-- hreflang -->
     <link rel="alternate" hreflang="zh-CN" href={new URL(Astro.url.pathname.replace(/^\/en\//, "/"), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.startsWith("/en/") ? Astro.url.pathname : `/en${Astro.url.pathname}`, Astro.site)} />
